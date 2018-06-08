@@ -1,0 +1,21 @@
+module sop_corba_admin{
+
+    interface gestionUsuariosInt{
+        struct Usuario{
+                string nombres;
+                string apellidos;
+                string nickName;
+                string clave;
+        };
+
+        struct Admin{
+                string login;
+                string clave;
+        };
+
+        typedef sequence<Usuario> ListaUsuarios;
+        boolean ingresoSistemaAdmin(in string login, in string clave);
+        boolean registroUsuario(in Usuario usuario);
+        ListaUsuarios listarUsuarios();
+    };
+};

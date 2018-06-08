@@ -1,0 +1,17 @@
+module sop_corba_audio{
+
+  interface callbackInt;
+
+  interface servidorAudio{
+    typedef sequence<octet> audio;
+    void enviarAudio(in audio audioStream);
+    boolean ingresoSistemaUsuario(in string nickName, in string clave);
+    boolean registrarUsuario(in callbackInt callback);
+  };
+
+  interface callbackInt{
+    typedef sequence<octet> audio;
+    void recibirAudio(in audio audioStream);
+  };
+
+};
