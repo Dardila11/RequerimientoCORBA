@@ -1,5 +1,11 @@
 package clienteReceptor.vista;
 
+
+import sop_corba_audio.callbackInt;
+import sop_corba_audio.servidorAudio;
+
+import javax.swing.*;
+
 /**
  *
  * @author danielardila
@@ -9,6 +15,7 @@ public class GUIUsuarioReceptor extends javax.swing.JFrame {
 
     public GUIUsuarioReceptor() {
         initComponents();
+        btnSuscribirse.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -145,12 +152,26 @@ public class GUIUsuarioReceptor extends javax.swing.JFrame {
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtNickName;
 
+    private servidorAudio svrServidorAudio;
+    private callbackInt svrCallbackInt;
+
     private void btnIngresarSistemaActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 1: Implementar logica Ingresar la sistema
+        if(svrServidorAudio.ingresoSistemaUsuario(txtNickName.getText(),txtClave.getText())){
+            JOptionPane.showMessageDialog(this,"Acceso concedido");
+            btnSuscribirse.setEnabled(true);
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Acceso denegado");
+
     }
 
     private void btnSuscribirseActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 2: Implementar logica suscribirse al Servidor
+
+        if(svrServidorAudio.suscribirUsuario(txtNickName.getText())){
+            JOptionPane.showMessageDialog(this,"Subscripcion exitosa. Recibiendo audio...");
+            // TODO 3: Implementar el recibir audio
+            //svrCallbackInt.recibirAudio();
+        }
     }
 
 }

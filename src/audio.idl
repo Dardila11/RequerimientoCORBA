@@ -7,6 +7,7 @@ module sop_corba_audio{
     void enviarAudio(in audio audioStream);
     boolean ingresoSistemaUsuario(in string nickName, in string clave);
     boolean registrarUsuario(in callbackInt callback);
+    boolean suscribirUsuario(in string nickName);
   };
 
   interface callbackInt{

@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public class ClsUsuarioDAO {
 
     private ConnDB connDB;
+    private ArrayList<String> usuariosSuscritos;
 
     public ClsUsuarioDAO(){
         this.connDB = new ConnDB();
+        this.usuariosSuscritos = new ArrayList<>();
     }
 
     public boolean ingresoAlSistema(String nickName, String clave){
@@ -47,6 +49,15 @@ public class ClsUsuarioDAO {
             e.printStackTrace();
         }
         return existe;
+    }
+
+    public boolean suscribirUsuario(String nickName){
+        boolean suscrito = false;
+        if(!usuariosSuscritos.contains(nickName)){
+            usuariosSuscritos.add(nickName);
+            suscrito = true;
+        }
+        return suscrito;
     }
 
 

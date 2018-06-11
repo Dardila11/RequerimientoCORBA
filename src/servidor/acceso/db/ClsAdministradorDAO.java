@@ -2,6 +2,7 @@ package servidor.acceso.db;
 
 import servidor.negocio.ClsAdministradorDTO;
 import servidor.negocio.ClsUsuarioDTO;
+import sop_corba_admin.gestionUsuariosIntPackage.Usuario;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,20 +50,20 @@ public class ClsAdministradorDAO {
         return existe;
     }
 
-    public boolean registrarUsuario(ClsUsuarioDTO usuarioDTO){
+    public boolean registrarUsuario(Usuario usuario){
 
         connDB.conectar();
         int conectado = -1;
 
         try {
             PreparedStatement sentencia = null;
-            String consulta = "insert into Usuario(usuarioDTO.getNombres(),usuarioDTO.getApellidos()," +
-                    "usuarioDTO.getNickName(),usuarioDTO.getClave()) values(?,?,?,?)";
+            String consulta = "insert into Usuario(usuario.nombres,usuario.apellidos," +
+                    "usuario.nickName,usuario.clave) values(?,?,?,?)";
             sentencia = connDB.getConnection().prepareStatement(consulta);
-            sentencia.setString(1, usuarioDTO.getNombres());
-            sentencia.setString(2, usuarioDTO.getApellidos());
-            sentencia.setString(3, usuarioDTO.getNickName());
-            sentencia.setString(4, usuarioDTO.getClave());
+            sentencia.setString(1, usuario.nombres);
+            sentencia.setString(2, usuario.apellidos);
+            sentencia.setString(3, usuario.nickName);
+            sentencia.setString(4, usuario.clave);
             conectado = sentencia.executeUpdate();
             sentencia.close();
             connDB.desconectar();

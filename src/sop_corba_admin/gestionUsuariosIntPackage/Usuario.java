@@ -27,4 +27,36 @@ public final class Usuario implements org.omg.CORBA.portable.IDLEntity
     clave = _clave;
   } // ctor
 
+
+  public String getNombres() {
+    return nombres;
+  }
+
+  public void setNombres(String nombres) {
+    this.nombres = nombres;
+  }
+
+  public String getApellidos() {
+    return apellidos;
+  }
+
+  public void setApellidos(String apellidos) {
+    this.apellidos = apellidos;
+  }
+
+  public String getNickName() {
+    return nickName;
+  }
+
+  public void setNickName(String nickName) {
+    this.nickName = nickName;
+  }
+
+  public String getClave() {
+    return clave;
+  }
+
+  public void setClave(String clave) {
+    this.clave = clave;
+  }
 } // class Usuario

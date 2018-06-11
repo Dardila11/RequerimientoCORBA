@@ -1,5 +1,7 @@
 package administrador.vista;
 
+import sop_corba_admin.gestionUsuariosInt;
+
 /**
  *
  * @author danielardila
@@ -85,14 +87,17 @@ public class GUIAdminMenuGU extends javax.swing.JFrame {
     private javax.swing.JButton btnRegUsuario;
     private javax.swing.JButton btnListarUsuarios;
 
-
-
     private void btnRegUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 1: Implementar logica registrar Usuario
+        GUIRegUsuario guiRegUsuario = new GUIRegUsuario();
+        guiRegUsuario.setVisible(true);
+        this.dispose();
+
     }
 
     private void btnListarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 2: Implementar logica listar Usuarios
+        GUIListUsuarios guiListUsuarios = new GUIListUsuarios();
+        guiListUsuarios.setVisible(true);
+        this.dispose();
     }
 }
 

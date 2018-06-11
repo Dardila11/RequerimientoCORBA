@@ -1,5 +1,11 @@
 package administrador.vista;
 
+import servidor.negocio.ClsUsuarioDTO;
+import sop_corba_admin.gestionUsuariosInt;
+import sop_corba_admin.gestionUsuariosIntPackage.Usuario;
+
+import javax.swing.*;
+
 /**
  *
  * @author danielardila
@@ -139,9 +145,17 @@ public class GUIRegUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtNickName;
     private javax.swing.JTextField txtNombres;
 
+    private gestionUsuariosInt svrGestionUsuarios;
 
     private void btnRegUsuarioActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 1: Implementar logica Registrar Usuario
+        Usuario usuario = new Usuario(txtNombres.getText(), txtApellidos.getText(),
+                                    txtNickName.getText(),txtClave.getText());
+
+        if(svrGestionUsuarios.registroUsuario(usuario)){
+            JOptionPane.showMessageDialog(this,"Usuario registrado correctamente");
+        }
+        else
+            JOptionPane.showMessageDialog(this,"El usuario no se pudo registrar");
     }
 }
 

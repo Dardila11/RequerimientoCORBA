@@ -1,5 +1,9 @@
 package administrador.vista;
 
+import sop_corba_admin.gestionUsuariosInt;
+
+import javax.swing.*;
+
 /**
  *
  * @author danielardila
@@ -109,8 +113,25 @@ public class GUIAdministrador extends javax.swing.JFrame {
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtLogin;
 
+    private gestionUsuariosInt svrGestionUsuarios;
+
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 1: Implementar Iniciar Sesion Administrador
+
+
+        String login = txtLogin.getText();
+        String clave = txtClave.getText();
+
+        if(svrGestionUsuarios.ingresoSistemaAdmin(login,clave)){
+            JOptionPane.showMessageDialog(this,"Acceso concedido!");
+            GUIAdminMenuGU guiAdminMenuGU = new GUIAdminMenuGU();
+            guiAdminMenuGU.setVisible(true);
+            this.dispose();
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Acceso denegado");
+
+
+
     }
 }
 

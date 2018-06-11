@@ -1,5 +1,9 @@
 package clienteEmisor.vista;
 
+import sop_corba_audio.servidorAudio;
+
+import javax.swing.*;
+
 /**
  *
  * @author danielardila
@@ -8,6 +12,8 @@ public class GUIUsuarioEmisor extends javax.swing.JFrame {
 
     public GUIUsuarioEmisor() {
         initComponents();
+        btnGrabarEnviarAudio.setEnabled(false);
+        btnSuscribirse.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -160,15 +166,35 @@ public class GUIUsuarioEmisor extends javax.swing.JFrame {
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtNickName;
 
+    private servidorAudio svrAudio;
+
     private void btnIngresarSistemaActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 1: Implementar logica ingreso al sistema
+        if(svrAudio.ingresoSistemaUsuario(txtNickName.getText(),txtClave.getText())){
+            JOptionPane.showMessageDialog(this,"Ingreso concedido");
+            btnSuscribirse.setEnabled(true);
+            btnGrabarEnviarAudio.setEnabled(true);
+            btnIngresarSistema.setEnabled(false);
+            txtNickName.setEnabled(false);
+            txtClave.setEnabled(false);
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Ingreso denegado");
     }
 
     private void btnSuscribirseActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO 2: Implementar logica suscribirse al servidor
+        if(svrAudio.suscribirUsuario(txtNickName.getText())){
+            JOptionPane.showMessageDialog(this,"Usuario suscrito correctamente");
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Usuario ya está suscrito");
     }
 
     private void btnGrabarEnviarAudioActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO 3: Implementar logica grabar y enviar audio
+        /**
+         * Para enviar audios el usuario debe estar suscrito
+         */
+
+
     }
 }
